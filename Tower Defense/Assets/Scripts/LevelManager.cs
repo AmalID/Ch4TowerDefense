@@ -32,6 +32,9 @@ public class LevelManager : MonoBehaviour
     private List<Enemy> _spawnedEnemies = new List<Enemy>();
     private List<Bullet> _spawnedBullets = new List<Bullet>();
 
+    [SerializeField] private int _maxLives = 3;
+    [SerializeField] private int _totalEnemy = 15;
+
     [SerializeField] private GameObject _panel;
     [SerializeField] private Text _statusInfo;
     [SerializeField] private Text _livesInfo;
@@ -45,8 +48,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         InstantiateAllTowerUI();
-        SetCurrentLives (_maxLives);
-        SetTotalEnemy (_totalEnemy);
+        SetCurrentLives(_maxLives);
+        SetTotalEnemy(_totalEnemy);
     }
 
     private void InstantiateAllTowerUI()
@@ -114,7 +117,7 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        SetTotalEnemy(--_enemyCounter);
+        SetTotalEnemy (--_enemyCounter);
         if (_enemyCounter < 0)
         {
             bool isAllEnemyDestroyed = _spawnedEnemies.Find(e => e.gameObject.activeSelf) == null;
