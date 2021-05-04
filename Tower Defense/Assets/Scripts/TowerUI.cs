@@ -48,10 +48,4 @@ public class TowerUI : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHan
             _currentSpawnedTower = null;
         }
     }
-
-    public void SetTowerPrefab(Tower tower)
-    {
-        _towerPrefab = tower;
-        _towerIcon.sprite = tower.GetTowerHeadIcon();
-    }
 }
