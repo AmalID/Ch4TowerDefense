@@ -13,7 +13,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 1f;
     [SerializeField] private float _bulletSplashRadius = 0f;
 
-    public Sprite GetHeadIcon()
+    public Sprite GetTowerHeadIcon()
     {
         return _towerHead.sprite;
     }

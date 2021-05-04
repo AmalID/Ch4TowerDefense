@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 1907872689415859826}
   - component: {fileID: 6417401606348645150}
   - component: {fileID: 6656103757069262942}
+  - component: {fileID: 8518096562662830180}
   m_Layer: 5
   m_Name: Tower UI
   m_TagString: Untagged
@@ -150,6 +151,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8518096562662830180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8465823765028235210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a593c8d03e646a84c8a521ea2999d6f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerIcon: {fileID: 1825832657957579364}
 --- !u!1001 &6741050951382418909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -275,3 +289,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6741050951382418909}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1825832657957579364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4961752100085903289, guid: a5015e8ed7694f44b8af9278324ed4c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6741050951382418909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
