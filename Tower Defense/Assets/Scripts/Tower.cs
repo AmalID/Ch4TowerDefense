@@ -24,4 +24,16 @@ public class Tower : MonoBehaviour
     {
         PlacePosition = newPosition;
     }
+
+    public void LockPlacememnt()
+    {
+        transform.position = (Vector2)PlacePosition;
+    }
+
+    public void ToggleOrderInLayer(bool toFront)
+    {
+        int orderInLayer = toFront ? 2 : 0;
+        _towerPlace.sortingOrder = orderInLayer;
+        _towerHead.sortingOrder = orderInLayer;
+    }
 }

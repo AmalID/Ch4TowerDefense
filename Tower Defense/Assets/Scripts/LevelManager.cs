@@ -40,4 +40,9 @@ public class LevelManager : MonoBehaviour
             newTowerUI.transform.name = tower.name;
         }
     }
+
+    public void RegisterSpawnedTower(Tower tower)
+    {
+        _spawnedTowers.Add(tower);
+    }
 }
