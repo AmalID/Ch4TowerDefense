@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         _currentHealth = _maxHealth;
-        _healthBar.size = _healthBar.size;
+        _healthFill.size = _healthBar.size;
     }
 
     public void MoveToTarget()
@@ -51,11 +51,21 @@ public class Enemy : MonoBehaviour
             else { transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f));
             }
         }
-        _healthBar.transform.parent = transform;
+        //_healthBar.transform.parent = transform;
+    }
+
+    public void ReduceEnemyHealth(int damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void SetCurrentPathIndex(int currentIndex)
     {
         CurrentPathIndex = currentIndex;
     }
+
 }
