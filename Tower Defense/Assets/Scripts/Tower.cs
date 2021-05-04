@@ -13,8 +13,15 @@ public class Tower : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 1f;
     [SerializeField] private float _bulletSplashRadius = 0f;
 
+    public Vector2? PlacePosition { get; private set; }
+
     public Sprite GetTowerHeadIcon()
     {
         return _towerHead.sprite;
+    }
+
+    public void SetPlacePosition(Vector2? newPosition)
+    {
+        PlacePosition = newPosition;
     }
 }

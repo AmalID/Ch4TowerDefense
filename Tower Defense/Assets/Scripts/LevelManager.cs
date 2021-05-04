@@ -22,6 +22,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private Tower[] _towerPrefab;
 
+    private List<Tower> _spawnedTowers = new List<Tower>();
+
     private void Start()
     {
         InstantiateAllTowerUI();
