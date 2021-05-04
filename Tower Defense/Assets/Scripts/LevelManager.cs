@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager _instance = null;
+    public bool IsOver { get; private set; }
     public static LevelManager Instance
     {
         get
@@ -30,11 +32,21 @@ public class LevelManager : MonoBehaviour
     private List<Enemy> _spawnedEnemies = new List<Enemy>();
     private List<Bullet> _spawnedBullets = new List<Bullet>();
 
+    [SerializeField] private GameObject _panel;
+    [SerializeField] private Text _statusInfo;
+    [SerializeField] private Text _livesInfo;
+    [SerializeField] private Text _totalEnemyInfo;
+
+    private int _currentLives;
+    private int _enemyCounter;
+
     private float _runningSpawnDelay;
 
     private void Start()
     {
         InstantiateAllTowerUI();
+        SetCurrentLives (_maxLives);
+        SetTotalEnemy (_totalEnemy);
     }
 
     private void InstantiateAllTowerUI()
@@ -90,10 +102,27 @@ public class LevelManager : MonoBehaviour
                 enemy.MoveToTarget();
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (IsOver)
+        {
+            return;
+        }
     }
 
     private void SpawnEnemy()
     {
+        SetTotalEnemy(--_enemyCounter);
+        if (_enemyCounter < 0)
+        {
+            bool isAllEnemyDestroyed = _spawnedEnemies.Find(e => e.gameObject.activeSelf) == null;
+            if (isAllEnemyDestroyed)
+            {
+                SetGameOver(true);
+            }return;
+        }
         int randomIndex = Random.Range(0, _enemyPrefabs.Length);
         string enemyIndexString = (randomIndex + 1).ToString();
 
@@ -145,6 +174,33 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+    public void ReduceLives(int value){
+        SetCurrentLives(_currentLives - value);
+        if (_currentLives <= 0)
+        {
+            SetGameOver(false);
+        }
+    }
+
+    public void SetCurrentLives(int currentLives)
+    {
+        _currentLives = Mathf.Max(currentLives, 0);
+        _livesInfo.text = $"Lives: {_currentLives}";
+    }
+    public void SetTotalEnemy(int totalEnemy)
+    {
+        _enemyCounter = totalEnemy;
+        _totalEnemyInfo.text = $"Total Enemy: {Mathf.Max(_enemyCounter, 0)}";
+    }
+
+    public void SetGameOver(bool isWin)
+    {
+        IsOver = true;
+
+        _statusInfo.text = isWin ? "you win!" : "you lose";
+        _panel.gameObject.SetActive(true);
+    }
+    
 
     private void OnDrawGizmos()
     {

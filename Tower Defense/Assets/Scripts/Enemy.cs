@@ -57,10 +57,16 @@ public class Enemy : MonoBehaviour
     public void ReduceEnemyHealth(int damage)
     {
         _currentHealth -= damage;
+        AudioPlayer.Instance.PlaySFX("hit-enemy");
         if (_currentHealth <= 0)
         {
+            _currentHealth = 0;
             gameObject.SetActive(false);
+            AudioPlayer.Instance.PlaySFX("enemy-die");
         }
+
+        float healthPercentage = (float)_currentHealth / _maxHealth;
+        _healthFill.size = new Vector2(healthPercentage * _healthBar.size.x, _healthBar.size.y);
     }
 
     public void SetCurrentPathIndex(int currentIndex)
